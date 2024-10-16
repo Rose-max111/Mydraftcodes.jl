@@ -13,7 +13,7 @@ function collective_temperature_gpu()
     λ = 1.5
     CUDA.device!(4)
 
-    scan_time = Vector(1000:100:40000)
+    scan_time = Vector(1000:100:2000)
     output = []
     nbatch = 100000
     for t in scan_time
@@ -70,3 +70,5 @@ function __main__()
     collective_temperature_gpu()
     plot_data()
 end
+
+__main__()

@@ -202,7 +202,7 @@ function track_equilibration_collective_temperature_gpu!(rule::TransitionRule,
     each_decrease = (max_temperature - 1e-5) / annealing_time
     now_temperature = max_temperature
     for t in 1:annealing_time
-        singlebatch_temp = fill(Float32(now_temperature), sa.m-1)
+        singlebatch_temp = Tuple(fill(Float32(now_temperature), sa.m-1))
         Temp = CuArray(fill(singlebatch_temp, size(state, 2)))
         if accelerate_flip == false
             for thisatom in 1:natom(sa)
