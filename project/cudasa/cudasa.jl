@@ -13,7 +13,7 @@ function collective_temperature_gpu()
     λ = 1.5
     CUDA.device!(4)
 
-    scan_time = Vector(1000:100:2000)
+    scan_time = Vector(1000:1000:40000)
     output = []
     nbatch = 100000
     for t in scan_time
@@ -59,7 +59,7 @@ end
 
 function plot_data()
     T_data, success_data = readout()
-    error_rate = 1 .- success_data ./ 1000
+    error_rate = 1 .- success_data ./ 100000
     f = Figure()
     ax = Axis(f[1, 1])
     scatter!(T_data, error_rate)
